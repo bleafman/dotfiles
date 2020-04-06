@@ -1,0 +1,90 @@
+[user]
+	name = Brandon Leafman
+	email = 17711952+Daxo@users.noreply.github.com
+[core]
+	autocrlf = false
+	safecrlf = true
+
+[alias]
+# Status and Logs
+
+#	st: short status format with branch and tracking information
+  st = status -sb
+# hist: shows the current branch's commit and merge history with a graph
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+#	l: shows a one-line log in a pretty color format, excluding merge commits
+  l = log --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset' --no-merges
+#	lr: shows a one-line log in a pretty color format, in reverse chornological order (earliest commits listed first)
+  lr = log --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset' --reverse
+#	ls: shows a one-line log in a pretty color format, but also shows what files were changed in each commit
+  ls = log --stat=,80 --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset' --no-merges
+#	lg: shows a one-line log in a pretty color format, along with a pretty ancestry graph from commit to commit
+  lg = log --graph --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+#	lc: shows the last commit on the current branch
+  lc = log -1 --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+  la = log -6 --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+  lga = log --graph -10 --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+#	lgfp: shows a graph log following only the first parent of each merge commit (e.g. show only the mainline history, not merged-in history)
+  lgfp = log --graph --first-parent --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+
+# Diffs
+
+#	d: diff working copy against the index, excluding bluespace changes
+  d = diff -w
+#	dc: diff index against HEAD
+  dc = diff -w --cached
+#	df: command takes two arguments: a commit (sha or named ref), and an optional path. Shows the the diff of what changed in that commit (optionally only for a particular file)
+  df = !sh -c 'git d $1^! -- $2' -
+#	ds: same as "d" but shows a list of files (--stat) instead of the full diff
+  ds = diff -w --stat=,80
+#	dsc: same as "dc" but shows a list of files (--stat) instead of the full diff
+  dsc = diff -w --stat=,80 --cached
+#	dsf: same as "df" but shows a list of files (--stat) instead of the full diff
+  dsf = !sh -c 'git ds $1^!' -
+#	dr: takes one argument, a filename - when a rebase results in a conflict, this command shows what originally changed in the commit you are currently applying
+  dr = !sh -c 'git d `cat .git/rebase-merge/stopped-sha`^! -- $1' -
+#	new: compares the current HEAD to the previous HEAD and shows the commits that differ and their changed files
+  new = !sh -c 'git ls $1@{1}..$1@{0} \"$@\"' -
+#	nd: same as new, but shows a full diff instead of a --stat
+  nd = !sh -c 'git ds $1@{1}..$1@{0} \"$@\"' -
+
+# Commits
+
+#	c: takes one argument, a commit message - adds all unstaged changes and commits them with message
+	c = !git add -A && git commit
+# caa: take all uncommitted and un-staged changes currently in the working directory and add them to the previous commit
+  caa = commit -a --amend -C HEAD
+#	cp: cherry-pick
+  cp = cherry-pick
+
+# Branch Navigation and Management
+
+  b  = branch
+#	co: checkout
+  co = checkout
+#	cb: takes one argument, a branch name - create a new branch and checkout that branch
+  cb = checkout -b
+#	ba: show all branches (local and remote)
+  ba = branch -a
+#	pr: prunes (removes) all old remote tracking branches that no longer exist
+  pr = remote prune origin
+#	so: shows remote origin and all remote branches
+  so = remote show origin
+
+# Merging, Fetching, and Pushing
+
+#	up: fetch, rebase, and show all changes that you just fetched
+  up = !sh -c 'git fetch && git rebase -p && git new' -
+#	out: push
+  out = push
+#	force: resets your current branch to what is on origin
+  force = !sh -c 'git fetch && git reset --hard origin/${1:-$(git rev-parse --abbrev-ref HEAD)}' -
+# rmd: removes a directory from git tracking (good if you accidently check in node modules) 
+  rmd = !sh -c 'git rm $(git ls-files --deleted)' -
+
+# Rebase
+#	rc: adds all unstaged changes to the index and calls rebase --continue
+  rc = !sh -c 'git add . && git rebase --continue' -
+
+[cblueential]
+	helper = osxkeychain
