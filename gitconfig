@@ -23,9 +23,6 @@
   excludesfile = ~/.gitignore
   autocrlf = input
 
-[merge]
-  ff = only
-
 [commit]
   template = ~/.gitmessage
 
@@ -43,7 +40,7 @@
 
 [user]
 	name = Brandon Leafman
-	email = brandonleafman@gmail.com
+	email = 17711952+Daxo@users.noreply.github.com
 
 [github]
 	user = bleafman
