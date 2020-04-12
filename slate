@@ -1,0 +1,90 @@
+# This is the a custom slate file for bleafman[github.com/bleafman]
+# If no ~/.slate file exists the default will be used.
+
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+config secondsBeforeRepeat 0.4
+config secondsBetweenRepeat 0.1
+config checkDefaultsOnLoad true
+
+config focusCheckWidth 100
+config focusCheckWidthMax 500
+config focusPreferSameApp true
+
+alias meh ctrl;alt;shift
+alias hyper ctrl;alt;shift;cmd
+
+alias ultrawideWidth 3440
+alias ultrawideHeight 1440
+alias cinema-display 2560x1440
+alias retina-display 1440x900
+
+# Reset Slate
+bind r:${meh} relaunch
+
+# use better apps switch
+#bind tab:cmd switch
+
+# Window Hints
+config windowHintsShowIcons true
+config windowHintsSpread true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsFontSize 80
+config windowHintsFontColor "48;227;202;1.0"
+config windowHintsRoundedCornerSize 15
+bind f:${meh} hint ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+# Grid
+bind g:${meh} grid padding:5 0:10,5 1:10,5
+
+# Major Resize Bindings
+
+bind m:${meh} move screenOriginX;screenOriginY screenSizeX;screenSizeY
+
+bind j:${meh}  chain corner top-left    resize:screenSizeX/2;screenSizeY | corner top-left    resize:screenSizeX/2;screenSizeY/2 | corner bottom-left
+bind ;:${meh} chain corner top-right   resize:screenSizeX/2;screenSizeY | corner top-right   resize:screenSizeX/2;screenSizeY/2 | corner bottom-right
+bind k:${meh}    corner top-left    resize:screenSizeX;screenSizeY/2
+bind l:${meh}  corner bottom-left resize:screenSizeX;screenSizeY/2
+
+# Ultrawide Resizes (WIP) -- Slate seems to have an error with screenSize calculations on the Ultrawide
+bind k:${hyper}  move screenOriginX+810;screenOriginY screenSizeX/1.94;screenSizeY
+bind j:${hyper}  chain corner top-left    resize:screenSizeX/4;screenSizeY | corner top-left    resize:screenSizeX/4;screenSizeY/2 | corner bottom-left
+bind ;:${hyper} chain corner top-right   resize:screenSizeX/4;screenSizeY | corner top-right   resize:screenSizeX/4;screenSizeY/2 | corner bottom-right
+
+# Minor Resize Bindings
+bind right:${hyper} resize +5% +0
+bind left:${hyper}  resize -5% +0
+bind up:${hyper}    resize +0   -10%
+bind down:${hyper}  resize +0   +10%
+
+# Nudge Bindings
+bind right:${meh} nudge +5% +0
+bind left:${meh}  nudge -5% +0
+bind up:${meh}    nudge +0   -10%
+bind down:${meh}  nudge +0   +10%
+
+# Push Bindings
+#bind right:${hyper}  push right bar-resize:screenSizeX/3
+#bind left:${hyper}  push left  bar-resize:screenSizeX/3
+#bind up:${hyper}     push up    center
+#bind down:${hyper}   push down  bar-resize:screenSizeY/2
+
+# Focus Bindings
+bind right:ctrl;cmd    focus right
+bind left:ctrl;cmd     focus left
+bind up:ctrl;cmd       focus up
+bind down:ctrl;cmd     focus down
+bind up:cmd;ctrl;cmd   focus behind
+bind down:cmd;ctrl;cmd focus behind
+
+# Throw Bindings
+bind o:${meh}         throw left resize
+bind p:${meh}         sequence throw right resize:screenSizeX/2;screenSizeY > push right
+
+#bind 0:ctrl;alt         throw 0 resize
+#bind 1:ctrl;alt         throw 1 resize
+#bind right:ctrl;alt;cmd throw right resize
+#bind left:ctrl;alt;cmd  throw left  resize
+#bind up:ctrl;alt;cmd    throw up    resize
+#bind down:ctrl;alt;cmd  throw down  resize
