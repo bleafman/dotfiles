@@ -48,6 +48,9 @@ bind k:${meh}    corner top-left    resize:screenSizeX;screenSizeY/2
 bind l:${meh}  corner bottom-left resize:screenSizeX;screenSizeY/2
 
 # Ultrawide Resizes (WIP) -- Slate seems to have an error with screenSize calculations on the Ultrawide
+
+bind m:${hyper} move screenOriginX+600;screenOriginY screenSizeX*0.66;screenSizeY
+
 bind k:${hyper}  move screenOriginX+810;screenOriginY screenSizeX/1.94;screenSizeY
 bind j:${hyper}  chain corner top-left    resize:screenSizeX/4;screenSizeY | corner top-left    resize:screenSizeX/4;screenSizeY/2 | corner bottom-left
 bind ;:${hyper} chain corner top-right   resize:screenSizeX/4;screenSizeY | corner top-right   resize:screenSizeX/4;screenSizeY/2 | corner bottom-right
@@ -79,8 +82,13 @@ bind up:cmd;ctrl;cmd   focus behind
 bind down:cmd;ctrl;cmd focus behind
 
 # Throw Bindings
-bind o:${meh}         throw left resize
-bind p:${meh}         sequence throw right resize:screenSizeX/2;screenSizeY > push right
+# Moves the current window to the left or right screen and resizes on subsequent button presses
+bind o:${meh}        chain throw left resize | corner top-left    resize:screenSizeX/2;screenSizeY | corner top-left    resize:screenSizeX/2;screenSizeY/2 | corner bottom-left
+bind p:${meh}        chain sequence throw right resize:screenSizeX/2;screenSizeY > push right | corner top-right   resize:screenSizeX/2;screenSizeY/2 | corner bottom-right
+
+# If you have more than 2 monitors, you'll want to enable these so you don't have to cycle through all the resizes
+# bind o:${hyper}      throw left resize
+# bind p:${hyper}      sequence throw right resize:screenSizeX/2;screenSizeY > push right
 
 #bind 0:ctrl;alt         throw 0 resize
 #bind 1:ctrl;alt         throw 1 resize
