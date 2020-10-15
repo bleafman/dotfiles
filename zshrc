@@ -50,5 +50,14 @@ _load_settings "$HOME/.zsh/configs"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# Node path for ifit monolith
+export NODE_PATH="/Users/brandon.leafman/Projects/ifit"
+
+# sets resource limits for processes, these were previously override to run mongoDB for ifit monolith
+# see: https://gist.github.com/tamitutor/6a1e41eec0ce021a9718
+ulimit -n 65536
+ulimit -u 2048
