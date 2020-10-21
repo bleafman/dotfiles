@@ -1,6 +1,6 @@
 [init]
-  templatedir = ~/.git_template
-
+  templatedir = ~/.gitmessage
+  
 [push]
   default = current
 
@@ -44,3 +44,5 @@
 
 [github]
 	user = bleafman
+[pull]
+	rebase = false

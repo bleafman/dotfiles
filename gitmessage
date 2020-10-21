@@ -1,16 +1,24 @@
 
-
+# <type>[(optional scope)]: <description>
+#
+# [optional body]
+#
+# [optional footer]
+#
 # 50-character subject line
 #
-# 72-character wrapped longer description. This should answer:
+# 72-character wrapped longer description.
 #
-# * Why was this change necessary?
-# * How does it address the problem?
-# * Are there any side effects?
+# type: fix, feat, chore, docs, style, refactor, perf, test
+# description: imperitave case ("correct", "add", "drop")
+# body: must begin one blank line after the description.
 #
-# Include a link to the ticket, if any.
+# If the change is a breaking change, the text "BREAKING CHANGE:"
+# must be in the first line of the body.
 #
-# Add co-authors if you worked on this code with others:
+# Example:
+# fix: Correct minor typos in code
 #
-# Co-authored-by: Full Name <email@example.com>
-# Co-authored-by: Full Name <email@example.com>
+# See the issue for details on the typos fixed.
+#
+# Closes FOUND-1234

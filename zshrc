@@ -61,3 +61,13 @@ export NODE_PATH="/Users/brandon.leafman/Projects/ifit"
 # see: https://gist.github.com/tamitutor/6a1e41eec0ce021a9718
 ulimit -n 65536
 ulimit -u 2048
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/brandon.leafman/Projects/wolf-dashboard-service/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/brandon.leafman/Projects/wolf-dashboard-service/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/brandon.leafman/Projects/wolf-dashboard-service/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/brandon.leafman/Projects/wolf-dashboard-service/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/brandon.leafman/Projects/wolf-dashboard-service/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/brandon.leafman/Projects/wolf-dashboard-service/node_modules/tabtab/.completions/slss.zsh
