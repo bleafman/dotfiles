@@ -5,6 +5,10 @@ alias mkdir="mkdir -p"
 alias e="$EDITOR"
 alias v="$VISUAL"
 
+# iFit
+alias nuke='rm -rf node_modules && nvmi'
+alias nvmi="nvm use && yarn"
+
 # Bundler
 alias b="bundle"
 
