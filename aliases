@@ -5,9 +5,16 @@ alias mkdir="mkdir -p"
 alias e="$EDITOR"
 alias v="$VISUAL"
 
+# Personal
+alias zet="cd && cd Code/learn && code lace"
+
 # iFit
 alias nuke='rm -rf node_modules && nvmi'
 alias nvmi="nvm use && yarn"
+alias cdi="cd && cd Code/ifit"
+
+# Node.js
+alias nvml="nvm use node && yarn"
 
 # Bundler
 alias b="bundle"
