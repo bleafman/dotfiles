@@ -1,0 +1,12 @@
+# Usage:
+# gitchgs - list files that have changed between master and HEAD
+# gitchgs some-other-branch - files that have changed between some-other-branch and HEAD
+# gitchgs 1a2b3c4d - files changed between commit 1a2b3c4d and HEAD
+
+function gitchgs () {
+    local branch=$1
+    if [ -z "$branch" ]; then
+        branch="master"
+    fi
+    git diff --diff-filter=ACMR --name-only --relative $branch...
+}

@@ -7,11 +7,16 @@ alias v="$VISUAL"
 
 # Personal
 alias zet="cd && cd Code/learn && code lace"
+alias F="thefuck"
 
 # iFit
 alias nuke='rm -rf node_modules && nvmi'
 alias nvmi="nvm use && yarn"
 alias cdi="cd && cd Code/ifit"
+alias cdidw="cd && cd Code/ifit/wolf-dashboard-webview";
+alias cdids="cd && cd Code/ifit/wolf-dashboard-service";
+alias cdis="cd && cd Code/ifit/semaphore";
+alias cdip="cd && cd Code/ifit/psychic"
 
 # Node.js
 alias nvml="nvm use node && yarn"
@@ -22,6 +27,10 @@ alias b="bundle"
 # Rails
 alias migrate="rake db:migrate db:rollback && rake db:migrate db:test:prepare"
 alias s="rspec"
+
+# Docker
+alias d="docker"
+alias dck="docker container kill $(docker ps -q)"
 
 # Pretty print the path
 alias path='echo $PATH | tr -s ":" "\n"'
