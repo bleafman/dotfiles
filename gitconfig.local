@@ -79,7 +79,7 @@
   out = push
 #	force: resets your current branch to what is on origin
   force = !sh -c 'git fetch && git reset --hard origin/${1:-$(git rev-parse --abbrev-ref HEAD)}' -
-# rmd: removes a directory from git tracking (good if you accidently check in node modules) 
+# rmd: removes a directory from git tracking (good if you accidently check in node modules)
   rmd = !sh -c 'git rm $(git ls-files --deleted)' -
 
 # Rebase

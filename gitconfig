@@ -1,6 +1,6 @@
 [init]
   templatedir = ~/.gitmessage
-  
+
 [push]
   default = current
 
@@ -47,3 +47,7 @@
 	user = bleafman
 [pull]
 	rebase = false
+
+# Web3 profile
+[includeIf "gitdir:~/Code/web3/"]
+	path = ~/.gitconfig-web3
