@@ -43,6 +43,8 @@ antigen apply
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
 export PATH="/usr/local/opt/mongodb-community@3.4/bin:$PATH"
 PATH="/Users/brandon.leafman/.local/share/solana/install/active_release/bin:$PATH"
