@@ -1,0 +1,6 @@
+- clean: ['~']
+
+- link:
+    ~/.zprofile: zprofile
+
+
