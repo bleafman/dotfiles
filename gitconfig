@@ -1,0 +1,92 @@
+[user]
+	name = Brandon Leafman
+	email = brandon.leafman@getbuilt.com
+	
+[push]
+  default = current
+
+[color]
+  ui = auto
+
+[help]
+	autocorrect = 1
+
+[alias]
+  aa = add --all
+  ap = add --patch
+  pf = push --force-with-lease
+
+# Commits
+
+# c: takes one argument, a commit message - adds all unstaged changes and commits them with message
+  c = !git add -A && git commit
+# caa: take all uncommitted and un-staged changes currently in the working directory and add them to the previous commit
+  caa = commit -a --amend -C HEAD
+# cp: cherry-pick
+  cp = cherry-pick
+
+# Branch Navigation and Management
+
+  b  = branch
+  branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
+
+#	co: checkout
+  co = checkout
+#	cb: takes one argument, a branch name - create a new branch and checkout that branch
+  cb = checkout -b
+#	ba: show all branches (local and remote)
+  ba = branch -a
+#	pr: prunes (removes) all old remote tracking branches that no longer exist
+  pr = remote prune origin
+#	so: shows remote origin and all remote branches
+  so = remote show origin
+
+# Status and Logs
+
+#	st: short status format with branch and tracking information
+  st = status -sb
+# hist: shows the current branch's commit and merge history with a graph
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+#	l: shows a one-line log in a pretty color format, excluding merge commits
+  l = log --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset' --no-merges
+#	lr: shows a one-line log in a pretty color format, in reverse chornological order (earliest commits listed first)
+  lr = log --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset' --reverse
+#	ls: shows a one-line log in a pretty color format, but also shows what files were changed in each commit
+  ls = log --stat=,80 --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset' --no-merges
+#	lg: shows a one-line log in a pretty color format, along with a pretty ancestry graph from commit to commit
+  lg = log --graph --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+#	lc: shows the last commit on the current branch
+  lc = log -1 --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+  la = log -6 --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+  lga = log --graph -10 --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+#	lgfp: shows a graph log following only the first parent of each merge commit (e.g. show only the mainline history, not merged-in history)
+  lgfp = log --graph --first-parent --pretty=format:'%C(blue)%h%Creset - %C(white)%s %Creset%C(magenta dim)(%an) %Creset%C(cyan)%ar%Creset'
+
+
+[core]
+  excludesfile = ~/.gitignore_global
+  autocrlf = false
+  safecrlf = true
+
+[pretty]
+  line = "%C(auto)%h %<|(60,trunc)%s %C(green)%ad%C(auto)%d"
+  detail = "%C(auto)%h %s%n  %C(yellow)by %C(blue)%an %C(magenta)<%ae> [%G?] %C(green)%ad%n %C(auto)%d%n"
+
+[commit]
+  template = ~/.gitmessage
+
+[fetch]
+  prune = true
+
+[rebase]
+  autosquash = true
+
+[include]
+  path = ~/.gitconfig.local
+
+[diff]
+	colorMoved = zebra
+
+# Allow local customizations in the .gitconfig_local file
+[include]
+	path = ~/.gitconfig_local
