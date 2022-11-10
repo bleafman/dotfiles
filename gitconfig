@@ -67,6 +67,7 @@
   excludesfile = ~/.gitignore_global
   autocrlf = false
   safecrlf = true
+	editor = code --wait
 
 [pretty]
   line = "%C(auto)%h %<|(60,trunc)%s %C(green)%ad%C(auto)%d"
