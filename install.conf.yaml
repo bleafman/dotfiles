@@ -1,13 +1,15 @@
 - defaults:
     link:
       relink: true
-      
+
 - clean: ['~']
 
 - link:
     ~/.zprofile: zprofile
     ~/.gitconfig:
     ~/.gitignore_global:
+    ~/.shell:
+    ~/.zshrc:
 
 
 
