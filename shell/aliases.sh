@@ -6,6 +6,9 @@ alias grep='grep --color'
 alias cp='cp -i'
 alias mv='mv -i'
 
+# # Aliases git to g
+# alias g='git'
+
 # Update dotfiles
 dfu() {
     (
