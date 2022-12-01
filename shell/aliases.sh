@@ -6,6 +6,10 @@ alias grep='grep --color'
 alias cp='cp -i'
 alias mv='mv -i'
 
+# Python aliases
+alias python='python3'
+alias pip='pip3'
+
 # # Aliases git to g
 # alias g='git'
 
