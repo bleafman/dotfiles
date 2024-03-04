@@ -7,8 +7,11 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # Python aliases
-alias python='python3'
-alias pip='pip3'
+alias py='python'
+alias py3='python3'
+
+# Node aliases
+alias nvmi='nvm use && npm install'
 
 # # Aliases git to g
 # alias g='git'
