@@ -2,7 +2,7 @@
     link:
       relink: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - link:
     ~/.zprofile: zprofile
@@ -10,4 +10,3 @@
     ~/.gitignore_global:
     ~/.shell:
     ~/.zshrc:
-    ~/.config:
