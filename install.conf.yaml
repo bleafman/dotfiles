@@ -6,7 +6,7 @@
 
 - link:
     ~/.zprofile: zprofile
-    ~/.gitconfig:
+    ~/.gitconfig: .gitconfig
     ~/.gitignore_global:
     ~/.shell:
     ~/.zshrc:
