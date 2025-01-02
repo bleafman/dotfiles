@@ -1,0 +1,18 @@
+
+db.Framework.insertOne({
+  "prompt": "You are a strategic business analyst tasked with creating an executive-focused account strategy for a B2B sales team. The goal is to identify a strategy to expand revenue from a current customer account. ",
+  "preview": "https://fluint-prod-assets-public.s3.amazonaws.com/FRAMEWORK_DEFAULT_THUMBNAILS/Internal_Deal_Team_Brief.png",
+  "forceFullContext": false,
+  "provider": "CLAUDE",
+  "kind": "GenerativeFreeformFramework",
+  "title": "Internal Deal Team Brief",
+  "scope": "COMMUNITY",
+  "metadata": {
+    "orgId": "742cbf87-5eed-4a1e-ac37-bb8be24b0c61",
+    "userId": "google_109731942677258176908",
+    "usageCount": NumberInt(1),
+    "userImage": "https://prod-fluint.s3.amazonaws.com/742cbf87-5eed-4a1e-ac37-bb8be24b0c61/profile-pictures/google_109731942677258176908.NateNasralla.png"
+  },
+  "tags": ["INTERNAL_PREP_DOC"],
+  "priority": NumberInt(0)
+})

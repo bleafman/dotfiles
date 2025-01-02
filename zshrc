@@ -1,5 +1,9 @@
+# ENV Variables
+source ~/.shell/env.sh
+
 # Aliases
 source ~/.shell/aliases.sh
+source ~/.shell/fluint.sh
 
 # Functions
 source ~/.shell/functions.sh

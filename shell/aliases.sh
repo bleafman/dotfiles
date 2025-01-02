@@ -13,8 +13,10 @@ alias py3='python3'
 # Node aliases
 alias nvmi='nvm use && npm install'
 
-# # Aliases git to g
-# alias g='git'
+# Docker
+alias dc='docker compose'
+alias dcd='docker compose down'
+alias dcud='docker compose up -d'
 
 # Update dotfiles
 dfu() {
