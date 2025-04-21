@@ -16,7 +16,9 @@ alias nvmi='nvm use && npm install'
 # Docker
 alias dc='docker compose'
 alias dcd='docker compose down'
+alias dcu='docker compose up'
 alias dcud='docker compose up -d'
+alias dl='docker logs -f'
 
 # Update dotfiles
 dfu() {
