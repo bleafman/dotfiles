@@ -4,6 +4,7 @@ source ~/.shell/env.sh
 # Aliases
 source ~/.shell/aliases.sh
 source ~/.shell/fluint.sh
+source ~/.shell/claude.sh
 
 # Functions
 source ~/.shell/functions.sh
@@ -26,3 +27,4 @@ export NVM_DIR="$HOME/.nvm"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/brandon/.lmstudio/bin"
+export PNPM_HOME="/Users/brandon/Library/pnpm"
