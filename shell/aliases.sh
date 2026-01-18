@@ -18,7 +18,6 @@ alias dc='docker compose'
 alias dcd='docker compose down'
 alias dcu='docker compose up'
 alias dcud='docker compose up -d'
-alias dl='docker logs -f'
 
 # Update dotfiles
 dfu() {
@@ -49,3 +48,16 @@ up()
     fi
     cd "${cdir}"
 }
+
+# Quick navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Better ls
+alias ll='ls -lah'
+alias la='ls -A'
+
+# Utility
+alias path='echo -e ${PATH//:/\\n}'
+alias reload='source ~/.zshrc'
