@@ -1,3 +1,21 @@
+# Flexible Docker functions
+dl() {
+  local container="${1:-}"
+  if [[ -z "$container" ]]; then
+    docker compose logs -f
+  else
+    docker compose logs -f "$container"
+  fi
+}
+
+dcr() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: dcr <container>"
+    return 1
+  fi
+  docker compose restart "$1"
+}
+
 alias mongosh-uat="mongosh $MONGO_UAT_URL"
 alias mongosh-prod="mongosh $MONGO_PROD_URL"
 alias mongosh-qa="mongosh $MONGO_QA_URL"
