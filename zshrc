@@ -17,6 +17,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # ENV Variables
 source ~/.shell/env.sh
+[[ -f ~/.shell/env.local.sh ]] && source ~/.shell/env.local.sh
 
 # Aliases
 source ~/.shell/aliases.sh
@@ -27,21 +28,29 @@ source ~/.shell/claude.sh
 source ~/.shell/functions.sh
 
 # Starship
-export STARSHIP_CONFIG="$HOME/.dotfiles/shell/starship.toml"
-eval "$(starship init zsh)"
+export STARSHIP_CONFIG="$HOME/.shell/starship.toml"
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
 
 # pnpm
-export PNPM_HOME="/Users/brandon.leafman/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
+if [[ -n "$IS_MACOS" ]]; then
+    export PNPM_HOME="$HOME/Library/pnpm"
+else
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+fi
+[[ -d "$PNPM_HOME" ]] && export PATH="$PNPM_HOME:$PATH"
 
-# Warpify Subshells
-printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh" }}\x9c'
+# Warp terminal (macOS only)
+if [[ -n "$IS_MACOS" && "$TERM_PROGRAM" == "WarpTerminal" ]]; then
+    printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh" }}\x9c'
+fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/brandon/.lmstudio/bin"
-export PNPM_HOME="/Users/brandon/Library/pnpm"
+# LM Studio CLI (macOS only)
+if [[ -n "$IS_MACOS" && -d "$HOME/.lmstudio/bin" ]]; then
+    export PATH="$PATH:$HOME/.lmstudio/bin"
+fi
