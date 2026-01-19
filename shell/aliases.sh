@@ -1,5 +1,9 @@
 # Use colors in coreutils utilities output
-alias ls='ls --color=auto'
+if [[ -n "$IS_MACOS" ]]; then
+    alias ls='ls -G'
+else
+    alias ls='ls --color=auto'
+fi
 alias grep='grep --color'
 
 # Aliases to protect against overwriting

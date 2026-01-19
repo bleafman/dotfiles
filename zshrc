@@ -7,6 +7,11 @@ setopt HIST_SAVE_NO_DUPS    # Don't save duplicates
 setopt SHARE_HISTORY        # Share history across sessions
 setopt EXTENDED_GLOB        # Extended globbing patterns
 
+# History config
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+
 # Completion system
 autoload -Uz compinit
 compinit -C  # -C skips security check for faster startup
@@ -46,9 +51,31 @@ if [[ -n "$IS_MACOS" && "$TERM_PROGRAM" == "WarpTerminal" ]]; then
     printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh" }}\x9c'
 fi
 
-# NVM
+# NVM (lazy-loaded for faster shell startup)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    # Lazy-load nvm - only initialize when first needed
+    nvm() {
+        unset -f nvm node npm npx
+        \. "$NVM_DIR/nvm.sh"
+        nvm "$@"
+    }
+    node() {
+        unset -f nvm node npm npx
+        \. "$NVM_DIR/nvm.sh"
+        node "$@"
+    }
+    npm() {
+        unset -f nvm node npm npx
+        \. "$NVM_DIR/nvm.sh"
+        npm "$@"
+    }
+    npx() {
+        unset -f nvm node npm npx
+        \. "$NVM_DIR/nvm.sh"
+        npx "$@"
+    }
+fi
 
 # LM Studio CLI (macOS only)
 if [[ -n "$IS_MACOS" && -d "$HOME/.lmstudio/bin" ]]; then
