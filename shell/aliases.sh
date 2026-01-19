@@ -14,6 +14,9 @@ alias mv='mv -i'
 alias py='python'
 alias py3='python3'
 
+# Claude
+alias c='claude'
+
 # Node aliases
 alias nvmi='nvm use && npm install'
 
