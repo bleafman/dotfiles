@@ -16,9 +16,10 @@ dcr() {
   docker compose restart "$1"
 }
 
-alias mongosh-uat="mongosh $MONGO_UAT_URL"
-alias mongosh-prod="mongosh $MONGO_PROD_URL"
-alias mongosh-qa="mongosh $MONGO_QA_URL"
+# Mongosh connections (functions so env vars expand at runtime)
+mongosh-uat() { mongosh "$MONGO_UAT_URL" "$@"; }
+mongosh-prod() { mongosh "$MONGO_PROD_URL" "$@"; }
+mongosh-qa() { mongosh "$MONGO_QA_URL" "$@"; }
 
 alias dlapi="docker logs -f workstation-v2-be-api-1"
 alias dlevents="docker logs -f workstation-v2-be-events-1"
