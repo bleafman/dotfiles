@@ -14,8 +14,13 @@ alias mv='mv -i'
 alias py='python'
 alias py3='python3'
 
-# Claude
-alias c='claude'
+# Claude (function to ensure nvm is loaded first)
+c() {
+    if [[ -s "$NVM_DIR/nvm.sh" ]] && ! command -v node &>/dev/null; then
+        \. "$NVM_DIR/nvm.sh"
+    fi
+    claude "$@"
+}
 
 # Node aliases
 alias nvmi='nvm use && npm install'
