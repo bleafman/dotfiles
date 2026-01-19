@@ -22,7 +22,7 @@ alias dcud='docker compose up -d'
 # Update dotfiles
 dfu() {
     (
-        cd ~/.dotfiles && git pull --ff-only && ./install -q
+        cd ~/dotfiles && git pull --ff-only && ./install -q
     )
 }
 
