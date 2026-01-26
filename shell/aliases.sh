@@ -68,3 +68,6 @@ alias la='ls -A'
 # Utility
 alias path='echo -e ${PATH//:/\\n}'
 alias reload='source ~/.zshrc'
+
+# Bird (Twitter CLI)
+alias bird-auth='~/.shell/bird-auth.sh'
