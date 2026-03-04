@@ -10,3 +10,12 @@
     ~/.gitignore_global:
     ~/.shell:
     ~/.zshrc:
+    ~/.claude/settings.json:
+      path: claude/settings.json
+      force: true
+    ~/.claude/CLAUDE.md: claude/CLAUDE.md
+    ~/.claude/hooks:
+      path: claude/hooks
+      force: true
+    ~/.claude/commands: claude/commands
+    ~/.claude/rules: claude/rules
