@@ -9,7 +9,7 @@
 - Iterate interactively - show structure before writing full drafts
 - Preserve voice - AI assists, but the voice should remain authentic
 - Read context files completely before drafting (no partial reads)
-- For any written content, follow `~/.claude/rules/voice-guide.md` (writing style, mechanics, banned phrases)
+- For any written content, follow the /voice-guide skill (writing style, mechanics, banned phrases)
 
 ## Technical
 
