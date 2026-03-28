@@ -19,3 +19,6 @@
       force: true
     ~/.claude/commands: claude/commands
     ~/.claude/rules: claude/rules
+    ~/.config/dcg:
+      path: dcg
+      force: true

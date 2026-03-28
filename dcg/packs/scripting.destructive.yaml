@@ -1,0 +1,126 @@
+schema_version: 1
+
+id: scripting.destructive
+name: Scripting Language Destructive Operations
+version: 1.0.0
+
+description: |
+  Catches destructive operations invoked through Python, Node, Bun, and Deno
+  inline execution (-c flags, -e flags, eval). Covers filesystem destruction,
+  subprocess shells running dangerous commands, and database operations.
+
+  Does NOT catch destructive code inside script files (python3 script.py) —
+  only inline execution where the code is visible in the bash command string.
+
+keywords:
+  - python
+  - python3
+  - node
+  - bun
+  - deno
+  - tsx
+  - npx
+
+destructive_patterns:
+  # Python filesystem destruction
+  - name: python-shutil-rmtree
+    pattern: \bpython3?\b.*(?:-c\s+|exec\().*\bshutil\.rmtree\b
+    severity: critical
+    description: Python shutil.rmtree blocked — recursive directory deletion
+    explanation: |
+      shutil.rmtree() recursively deletes entire directory trees.
+      This is the Python equivalent of rm -rf.
+
+      Safe alternatives:
+        - Use trash-cli or send2trash for recoverable deletion
+        - Use shutil.rmtree with a dry-run preview first
+
+  - name: python-os-remove
+    pattern: \bpython3?\b.*(?:-c\s+|exec\().*\bos\.(?:remove|unlink|rmdir|removedirs)\b
+    severity: high
+    description: Python os.remove/rmdir blocked — file or directory deletion
+    explanation: |
+      os.remove(), os.unlink(), os.rmdir(), and os.removedirs() delete
+      files and directories permanently.
+
+      Safe alternatives:
+        - Use trash-cli or send2trash for recoverable deletion
+        - Verify paths before deletion
+
+  - name: python-pathlib-rmtree
+    pattern: \bpython3?\b.*(?:-c\s+|exec\().*\.(?:rmdir|unlink)\s*\(
+    severity: high
+    description: Python pathlib rmdir/unlink blocked
+    explanation: |
+      Path.rmdir() and Path.unlink() permanently delete files and directories.
+
+  - name: python-subprocess-dangerous
+    pattern: \bpython3?\b.*(?:-c\s+|exec\().*\bsubprocess\.(?:run|call|Popen|check_call|check_output)\s*\(\s*(?:\[?\s*['\"](?:rm|git\s+reset|git\s+clean|git\s+checkout\s+--))
+    severity: critical
+    description: Python subprocess running destructive shell command
+    explanation: |
+      Detected a Python subprocess call that executes a known-dangerous
+      shell command. The destructive command should be run directly so
+      DCG core packs can evaluate it.
+
+  - name: python-os-system-dangerous
+    pattern: \bpython3?\b.*(?:-c\s+|exec\().*\bos\.system\s*\(\s*['\"](?:rm\s|git\s+reset|git\s+clean|git\s+push\s+.*--force)
+    severity: critical
+    description: Python os.system running destructive command
+    explanation: |
+      os.system() is executing a destructive shell command through Python.
+
+  # Node/Bun/Deno filesystem destruction
+  - name: node-fs-rm-recursive
+    pattern: \b(?:node|bun|deno|tsx|npx)\b.*(?:-e\s+|eval\().*\bfs\.(?:rmSync|rm|rmdirSync|rmdir)\b
+    severity: critical
+    description: Node fs.rm/rmdir blocked — recursive directory deletion
+    explanation: |
+      fs.rmSync() and fs.rm() with recursive option delete entire directory trees.
+      This is the Node equivalent of rm -rf.
+
+  - name: node-fs-unlink
+    pattern: \b(?:node|bun|deno|tsx|npx)\b.*(?:-e\s+|eval\().*\bfs\.(?:unlinkSync|unlink)\b
+    severity: high
+    description: Node fs.unlink blocked — file deletion
+    explanation: |
+      fs.unlinkSync() and fs.unlink() permanently delete files.
+
+  - name: node-child-process-dangerous
+    pattern: \b(?:node|bun|deno|tsx|npx)\b.*(?:-e\s+|eval\().*\b(?:execSync|exec|spawn|spawnSync)\s*\(\s*['\"`](?:rm\s|git\s+reset|git\s+clean|git\s+push\s+.*--force)
+    severity: critical
+    description: Node child_process running destructive command
+    explanation: |
+      Detected a Node.js child process call that executes a known-dangerous
+      shell command.
+
+  - name: node-fs-writefile-system-path
+    pattern: \b(?:node|bun|deno|tsx|npx)\b.*(?:-e\s+|eval\().*\bfs\.(?:writeFileSync|writeFile)\s*\(\s*['\"`]\/(?:etc|usr|bin|sbin|boot|sys|proc)\/
+    severity: critical
+    description: Node writeFile to system path blocked
+    explanation: |
+      Writing to system directories (/etc, /usr, /bin, etc.) from inline
+      Node.js can corrupt system configuration.
+
+  # Deno-specific
+  - name: deno-remove
+    pattern: \bdeno\b.*(?:-e\s+|eval\().*\bDeno\.(?:remove|removeSync)\b
+    severity: high
+    description: Deno.remove blocked — file/directory deletion
+    explanation: |
+      Deno.remove() and Deno.removeSync() permanently delete files
+      and directories. With { recursive: true } this is equivalent to rm -rf.
+
+safe_patterns:
+  # Dry-run and preview operations
+  - name: python-print-path
+    pattern: \bpython3?\b.*(?:-c\s+|exec\().*\bprint\s*\(.*\bos\.path
+    description: Python printing path info is safe
+
+  - name: python-os-path-exists
+    pattern: \bpython3?\b.*(?:-c\s+|exec\().*\bos\.path\.(?:exists|isfile|isdir|getsize)\b
+    description: Python path checking operations are safe
+
+  - name: node-fs-read
+    pattern: \b(?:node|bun|deno|tsx)\b.*(?:-e\s+|eval\().*\bfs\.(?:readFileSync|readFile|readdirSync|readdir|statSync|stat|existsSync)\b
+    description: Node read-only filesystem operations are safe

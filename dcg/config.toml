@@ -1,0 +1,11 @@
+[packs]
+enabled = [
+    "platform.github",
+    "secrets.onepassword",
+    "dns.cloudflare",
+    "package_managers",
+    "scripting.destructive",
+]
+custom_paths = [
+    "~/.config/dcg/packs/*.yaml",
+]
