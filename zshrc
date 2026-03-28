@@ -55,7 +55,19 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"
 
-# LM Studio CLI (macOS only)if [[ -n "$IS_MACOS" && -d "$HOME/.lmstudio/bin" ]]; then
-    export PATH="$PATH:$HOME/.lmstudio/bin"
-fi
+# Local binaries (dcg, etc.)
 export PATH="$HOME/.local/bin:$PATH"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+[ -s "$BUN_INSTALL/_bun" ] && source "$BUN_INSTALL/_bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# dcg: warn if hook was silently removed from Claude Code settings
+if command -v dcg &>/dev/null && command -v jq &>/dev/null; then
+    if [ -f "$HOME/.claude/settings.json" ] && \
+       ! jq -e '.hooks.PreToolUse[]? | select(.hooks[]?.command | test("dcg$"))' \
+         "$HOME/.claude/settings.json" &>/dev/null; then
+        printf '\033[1;33m[dcg] Hook missing from ~/.claude/settings.json — run: dcg install\033[0m\n'
+    fi
+fi

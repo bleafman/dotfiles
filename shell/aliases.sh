@@ -13,6 +13,8 @@ alias mv='mv -i'
 # Python aliases
 alias py='python'
 alias py3='python3'
+alias pip='uv pip'
+alias pip3='uv pip'
 
 # Claude
 alias c='claude'
