@@ -71,5 +71,12 @@ alias la='ls -A'
 alias path='echo -e ${PATH//:/\\n}'
 alias reload='source ~/.zshrc'
 
+# Safe delete (trash instead of rm)
+if [[ -n "$IS_MACOS" ]]; then
+    alias trash='trash -F'  # Homebrew trash, -F = Finder behavior
+else
+    alias trash='gio trash'
+fi
+
 # Bird (Twitter CLI)
 alias bird-auth='~/.shell/bird-auth.sh'
