@@ -20,6 +20,8 @@
 
 ## Web Fetching
 
-If WebFetch is blocked or returns garbage for a URL:
+**Skip WebFetch and go straight to `agent-browser` for:** Amazon, LinkedIn, Twitter/X, Reddit, and other Cloudflare/captcha-walled sites. WebFetch reliably fails on these — don't waste the attempt.
+
+For everything else, WebFetch first (cheaper), fall back to `agent-browser` if blocked or garbled.
 - `agent-browser` skill can navigate to pages, extract content, and take screenshots
 - `agent-browser screenshot --annotate` overlays numbered labels on interactive elements

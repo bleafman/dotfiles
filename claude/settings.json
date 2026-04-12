@@ -15,6 +15,11 @@
       "Bash(trash:*)",
       "Bash(osgrep:*)",
       "WebSearch"
+    ],
+    "additionalDirectories": [
+      "/mnt/c/Users/Brandon/Pictures/Screenshots",
+      "/mnt/c/Users/Brandon/Downloads",
+      "/home/brandon/Code/llm-wiki"
     ]
   },
   "hooks": {
@@ -68,5 +73,7 @@
       }
     }
   },
-  "skipDangerousModePermissionPrompt": true
+  "voiceEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "model": "opus"
 }
