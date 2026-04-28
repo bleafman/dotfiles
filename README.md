@@ -20,7 +20,7 @@ The install script is idempotent and can be run multiple times safely.
 - `shell/` - Modular shell configs:
   - `aliases.sh` - Common aliases (ls, docker, navigation)
   - `functions.sh` - Utility functions (git shortcuts, directory bookmarks)
-  - `claude.sh` - Claude Code helper (`claude-yolo` for toggling permissive mode)
+  - `docker.sh` - Docker compose helpers (`dl`, `dcr`)
   - `starship.toml` - Starship prompt configuration
 
 ### Git

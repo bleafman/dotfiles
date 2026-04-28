@@ -26,8 +26,7 @@ source ~/.shell/env.sh
 
 # Aliases
 source ~/.shell/aliases.sh
-source ~/.shell/fluint.sh
-source ~/.shell/claude.sh
+source ~/.shell/docker.sh
 
 # Functions
 source ~/.shell/functions.sh
