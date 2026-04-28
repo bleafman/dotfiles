@@ -1,0 +1,8 @@
+brew "bat"
+brew "eza"
+brew "fnm"
+brew "fzf"
+brew "gh"
+brew "git-filter-repo"
+brew "starship"
+brew "zoxide"

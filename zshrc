@@ -4,6 +4,9 @@ setopt AUTO_PUSHD           # Push directories onto stack
 setopt PUSHD_IGNORE_DUPS    # No duplicates in dir stack
 setopt HIST_IGNORE_ALL_DUPS # No duplicate history entries
 setopt HIST_SAVE_NO_DUPS    # Don't save duplicates
+setopt HIST_IGNORE_SPACE    # Don't save commands starting with space (handy for secrets)
+setopt HIST_REDUCE_BLANKS   # Strip extra whitespace before saving
+setopt INC_APPEND_HISTORY   # Append immediately, not on shell exit
 setopt SHARE_HISTORY        # Share history across sessions
 setopt EXTENDED_GLOB        # Extended globbing patterns
 
@@ -37,6 +40,16 @@ if command -v starship &> /dev/null; then
     eval "$(starship init zsh)"
 fi
 
+# fzf (Ctrl+R history, Ctrl+T file picker, Alt+C cd)
+if command -v fzf &> /dev/null; then
+    eval "$(fzf --zsh)"
+fi
+
+# zoxide (smarter cd: `z foo` jumps to most-frecent match)
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
+
 # pnpm
 if [[ -n "$IS_MACOS" ]]; then
     export PNPM_HOME="$HOME/Library/pnpm"
@@ -50,9 +63,10 @@ if [[ -n "$IS_MACOS" && "$TERM_PROGRAM" == "WarpTerminal" ]]; then
     printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh" }}\x9c'
 fi
 
-# NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# fnm (Node version manager — Rust-based replacement for nvm)
+if command -v fnm &> /dev/null; then
+    eval "$(fnm env --use-on-cd)"
+fi
 
 # LM Studio CLI (macOS only)
 if [[ -n "$IS_MACOS" && -d "$HOME/.lmstudio/bin" ]]; then

@@ -1,5 +1,10 @@
-# Use colors in coreutils utilities output
-if [[ -n "$IS_MACOS" ]]; then
+# ls — prefer eza if installed, fall back to coreutils
+if command -v eza &> /dev/null; then
+    alias ls='eza --group-directories-first'
+    alias ll='eza -lah --git --group-directories-first'
+    alias la='eza -A --group-directories-first'
+    alias lt='eza --tree --level=2'
+elif [[ -n "$IS_MACOS" ]]; then
     alias ls='ls -G'
 else
     alias ls='ls --color=auto'
@@ -61,9 +66,11 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
-# Better ls
-alias ll='ls -lah'
-alias la='ls -A'
+# Better ls (overridden above when eza is available)
+if ! command -v eza &> /dev/null; then
+    alias ll='ls -lah'
+    alias la='ls -A'
+fi
 
 # Utility
 alias path='echo -e ${PATH//:/\\n}'

@@ -7,7 +7,8 @@ Personal dotfiles managed with [dotbot](https://github.com/anishathalye/dotbot).
 ```bash
 git clone https://github.com/bleafman/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-./install
+brew bundle    # install all CLI tools (see Brewfile)
+./install      # symlink dotfiles
 ```
 
 The install script is idempotent and can be run multiple times safely.
@@ -39,10 +40,16 @@ The install script is idempotent and can be run multiple times safely.
 
 ## Prerequisites
 
-- [Homebrew](https://brew.sh/)
-- [zsh](https://www.zsh.org/) - `brew install zsh`
-- [Starship](https://starship.rs/) - `brew install starship`
-- [nvm](https://github.com/nvm-sh/nvm) (optional, for Node.js)
+- [Homebrew](https://brew.sh/) — everything else is in the `Brewfile`
+
+The Brewfile installs:
+- **starship** — prompt
+- **fnm** — Node version manager (replaces nvm; faster startup)
+- **fzf** — fuzzy finder (Ctrl+R for history, Ctrl+T for files, Alt+C for cd)
+- **zoxide** — smarter `cd` (`z foo` jumps to most-frecent match)
+- **eza** — modern `ls` (used by `ls`/`ll`/`la`/`lt` aliases when present)
+- **bat** — `cat` with syntax highlighting
+- **gh** — GitHub CLI
 
 ## Updating
 

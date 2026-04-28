@@ -82,15 +82,13 @@
 [rebase]
   autosquash = true
 
-[include]
-  path = ~/.gitconfig.local
-
 [diff]
 	colorMoved = zebra
 
-# Allow local customizations in the .gitconfig_local file
+# Per-machine overrides (not tracked)
 [include]
-	path = ~/.gitconfig_local
+	path = ~/.gitconfig.local
+
 [filter "lfs"]
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
