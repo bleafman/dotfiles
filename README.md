@@ -13,6 +13,18 @@ brew bundle    # install all CLI tools (see Brewfile)
 
 The install script is idempotent and can be run multiple times safely.
 
+### Work-specific layers
+
+Some tools are only needed on specific machines. Each context has a bootstrap
+script under `bundles/` that's layered on top of the base setup.
+
+```bash
+./bundles/antithesis.sh   # Antithesis work machine extras
+```
+
+These scripts handle anything that doesn't fit cleanly in a Brewfile (npm
+globals, manual installs, etc.) and are idempotent.
+
 ## What's included
 
 ### Shell configuration
