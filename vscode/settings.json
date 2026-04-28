@@ -4,7 +4,8 @@
   "editor.fontSize": 12.5,
   "editor.lineHeight": 20,
   "editor.letterSpacing": 0.5,
-  "editor.fontWeight": "400",
+  "editor.fontWeight": "normal",
+  "editor.fontVariations": "'wght' 400",
   "editor.fontLigatures": true,
 
   // Cursor
@@ -24,5 +25,5 @@
   // Workbench / chrome
   "workbench.editor.showTabs": "none",
   "explorer.compactFolders": false,
-  "workbench.colorTheme": "Default Dark Modern"
+  "workbench.colorTheme": "Dark Modern"
 }
