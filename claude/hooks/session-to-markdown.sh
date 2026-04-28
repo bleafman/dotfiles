@@ -22,9 +22,12 @@ if [ -z "$CWD" ]; then
     CWD="$HOME"
 fi
 
-# Create output directory in the project root (where claude was started)
+# Centralized session archive, organized per project
 # CLAUDE_PROJECT_DIR is provided by Claude Code to hooks
-OUTPUT_DIR="${CLAUDE_PROJECT_DIR:-$CWD}/.sessions"
+PROJECT_DIR="${CLAUDE_PROJECT_DIR:-$CWD}"
+PROJECT_NAME=$(basename "$PROJECT_DIR" | sed 's/[^A-Za-z0-9._-]/_/g')
+[ -z "$PROJECT_NAME" ] && PROJECT_NAME="root"
+OUTPUT_DIR="$HOME/.claude/sessions/$PROJECT_NAME"
 mkdir -p "$OUTPUT_DIR"
 
 # Get first timestamp for filename
@@ -49,6 +52,7 @@ fi
 # Convert JSONL to Markdown
 {
     echo "<!-- Session $SESSION_ID -->"
+    echo "<!-- Project: $PROJECT_DIR -->"
     echo ""
     echo "# ${FIRST_TS//_/ }"
     echo ""
