@@ -10,3 +10,7 @@
     ~/.gitignore_global:
     ~/.shell:
     ~/.zshrc:
+    ~/.claude/commands: claude/commands
+    ~/.claude/hooks:
+      path: claude/hooks
+      force: true
