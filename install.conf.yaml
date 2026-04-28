@@ -14,3 +14,7 @@
     ~/.claude/hooks:
       path: claude/hooks
       force: true
+    ~/Library/Application Support/Code/User/settings.json:
+      path: vscode/settings.json
+      force: true
+      create: true
