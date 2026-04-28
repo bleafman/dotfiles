@@ -7,12 +7,10 @@
   "editor.fontWeight": "normal",
   "editor.fontVariations": "'wght' 400",
   "editor.fontLigatures": true,
-
   // Cursor
   "editor.cursorStyle": "line",
   "editor.cursorWidth": 2,
   "editor.cursorBlinking": "solid",
-
   // Editor essentials
   "editor.tabSize": 2,
   "editor.minimap.enabled": false,
@@ -21,9 +19,24 @@
   "editor.guides.bracketPairs": "active",
   "editor.formatOnSave": true,
   "files.trimTrailingWhitespace": true,
-
   // Workbench / chrome
   "workbench.editor.showTabs": "none",
   "explorer.compactFolders": false,
-  "workbench.colorTheme": "Dark Modern"
+  "workbench.colorTheme": "Dark+",
+
+  // Cool-gray-900 background overlay (Tailwind palette)
+  "workbench.colorCustomizations": {
+    "editor.background": "#111827",
+    "input.background": "#111827",
+    "sideBar.background": "#1F2937",
+    "quickInput.background": "#1F2937",
+    "titleBar.activeBackground": "#374151",
+    "titleBar.inactiveBackground": "#374151",
+    "activityBar.background": "#374151",
+    "list.inactiveSelectionBackground": "#374151",
+    "dropdown.background": "#374151",
+    "badge.background": "#374151",
+    "list.hoverBackground": "#374151",
+    "editorLineNumber.foreground": "#6B7280"
+  }
 }
