@@ -5,6 +5,7 @@ brew "fzf"
 brew "gh"
 brew "git-filter-repo"
 brew "starship"
+brew "uv"
 brew "zoxide"
 
 # GUI apps deliberately excluded except VS Code — keeping GUI app updates

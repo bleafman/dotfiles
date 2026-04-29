@@ -15,7 +15,13 @@ alias grep='grep --color'
 alias cp='cp -i'
 alias mv='mv -i'
 
-# Python aliases
+# Python — route through uv to dodge venv setup
+if command -v uv &> /dev/null; then
+    alias python='uv run python'
+    alias python3='uv run python'
+    alias pip='uv pip'
+    alias pip3='uv pip'
+fi
 alias py='python'
 alias py3='python3'
 
@@ -23,7 +29,7 @@ alias py3='python3'
 alias c='claude'
 
 # Node aliases
-alias nvmi='nvm use && npm install'
+alias fnmi='fnm use && npm install'
 
 # Docker
 alias dc='docker compose'
