@@ -11,6 +11,7 @@
     ~/.shell:
     ~/.zshrc:
     ~/.claude/commands: claude/commands
+    ~/.claude/skills: claude/skills
     ~/.claude/hooks:
       path: claude/hooks
       force: true
