@@ -19,17 +19,10 @@ EOF
     exit 0
 fi
 
-# Block uv run unless it's strictly `uv run <file>.py [args]` (no flags before the script)
-# Blocks: uv run python, uv run bash, uv run --with pkg script.py, etc.
-# Only matches `uv run` as a command (start of line or after && ; |), not as part of filenames
-if echo "$COMMAND" | grep -qE '(^|[;&|]\s*)uv\s+run\b'; then
-    if ! echo "$COMMAND" | grep -qE '(^|[;&|]\s*)uv\s+run\s+[A-Za-z0-9_./-]+\.py\b'; then
-        cat << 'EOF'
-{"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": "uv run blocked: only `uv run <script>.py [args]` is allowed. No flags, no arbitrary commands."}}
-EOF
-        exit 0
-    fi
-fi
+# Note: `uv run` is allowed freely. Other rules in this file (rm -rf,
+# sf destructive ops, etc.) check the full command string regardless
+# of how it was invoked, so `uv run rm -rf /` is still blocked by
+# the rm rule below.
 
 # Ask confirmation for force push to main/master
 if echo "$COMMAND" | grep -qE 'git\s+push\s+.*--force.*\s+(main|master)|git\s+push\s+.*\s+(main|master)\s+.*--force|git\s+push\s+-f.*\s+(main|master)'; then
