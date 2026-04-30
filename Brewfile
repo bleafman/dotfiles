@@ -1,3 +1,4 @@
+brew "agent-browser"
 brew "bat"
 brew "eza"
 brew "fnm"
