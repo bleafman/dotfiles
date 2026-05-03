@@ -63,13 +63,20 @@
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
     "open-prose@prose": true,
-    "design-and-refine@design-plugins": true
+    "design-and-refine@design-plugins": true,
+    "warp@claude-code-warp": true
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
       "source": {
         "source": "github",
         "repo": "anthropics/skills"
+      }
+    },
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
       }
     }
   },
