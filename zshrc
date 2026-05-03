@@ -4,6 +4,9 @@ setopt AUTO_PUSHD           # Push directories onto stack
 setopt PUSHD_IGNORE_DUPS    # No duplicates in dir stack
 setopt HIST_IGNORE_ALL_DUPS # No duplicate history entries
 setopt HIST_SAVE_NO_DUPS    # Don't save duplicates
+setopt HIST_IGNORE_SPACE    # Don't save commands starting with space (handy for secrets)
+setopt HIST_REDUCE_BLANKS   # Strip extra whitespace before saving
+setopt INC_APPEND_HISTORY   # Append immediately, not on shell exit
 setopt SHARE_HISTORY        # Share history across sessions
 setopt EXTENDED_GLOB        # Extended globbing patterns
 
